@@ -23,7 +23,7 @@ function App() {
   // next question
   const nextQuestion = () => {};
 
-  fetchQuizData(TOTAL_QUESTIONS, Difficulty.HARD);
+  console.log(fetchQuizData(TOTAL_QUESTIONS, Difficulty.HARD));
 
   return (
     <div className="App">

@@ -1,13 +1,15 @@
+import { shuffleArray } from "./utils";
+
 export type QuizType = {
   category: string;
-  correctAnswer: string;
+  correct_answer: string;
   difficult: string;
   incorrect_answers: string[];
   question: string;
   type: string;
 };
 
-export type QuestionState = QuizType & { answer: string };
+export type QuestionState = QuizType & { answers: string };
 
 export enum Difficulty {
   EASY = "easy",
@@ -22,6 +24,9 @@ export const fetchQuizData = async (amount: number, difficulty: Difficulty) => {
   const data = await (await fetch(endPoint)).json();
   return data.results.map((quizData: QuizType) => ({
     ...quizData,
-    answer: "answern",
+    answers: shuffleArray([
+      quizData.correct_answer,
+      ...quizData.incorrect_answers,
+    ]),
   }));
 };
