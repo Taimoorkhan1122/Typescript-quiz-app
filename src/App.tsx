@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { fetchQuizData, Difficulty, QuestionState } from "./API";
 
 // components
@@ -6,7 +6,7 @@ import { SelectCategory, QuestionCard } from "./Components";
 
 const TOTAL_QUESTIONS = 10;
 
-type AnswerObject = {
+export type AnswerObject = {
   question: string;
   answer: string;
   isCorrect: boolean;
@@ -20,12 +20,17 @@ const App = () => {
   const [userAnswers, setUserAnswers] = useState<AnswerObject[]>([]);
   const [score, setScore] = useState(0);
   const [gameOver, setGameOver] = useState(true);
+  const [category, setCategory] = useState("");
 
   // start the quiz
   const startQuiz = async () => {
     setLoading(true);
     setGameOver(false);
-    const newQuestions = await fetchQuizData(TOTAL_QUESTIONS, Difficulty.EASY);
+    const newQuestions = await fetchQuizData(
+      TOTAL_QUESTIONS,
+      Difficulty.EASY,
+      category
+    );
     setQuestions(newQuestions);
 
     setUserAnswers([]);
@@ -33,7 +38,6 @@ const App = () => {
     setNumber(0);
     setLoading(false);
   };
-  console.log(questions);
 
   // check answer
   const checkAnswer = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -62,14 +66,24 @@ const App = () => {
       : setNumber(nextQuestion);
   };
 
+  // handler
+  const handler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectCategory = e.currentTarget.value;
+    selectCategory !== "any" && setCategory(selectCategory);
+  };
+
   return (
     <div className="App">
       <h1>React Quiz App</h1>
+
       {/* if not game over and the its not the last answer than show this button */}
       {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
-        <button className="start" onClick={startQuiz}>
-          start quiz
-        </button>
+        <div className="container">
+          <SelectCategory handler={handler} />
+          <button className="start" onClick={startQuiz}>
+            start quiz
+          </button>
+        </div>
       ) : null}
       {!gameOver && <p>Score: {score}</p>}
       {loading && !gameOver && <p>Loading...</p>}
@@ -93,7 +107,6 @@ const App = () => {
             Next question
           </button>
         )}
-      {/* <SelectCategory /> */}
     </div>
   );
 };

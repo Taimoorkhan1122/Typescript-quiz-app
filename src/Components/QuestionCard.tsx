@@ -1,12 +1,15 @@
 import React from "react";
 
+// types
+import { AnswerObject } from "../App";
+
 type CardProps = {
   question: string;
   answers: string[];
-  callback: any;
+  callback: (e: React.MouseEvent<HTMLButtonElement>) => void;
   questionNum: number;
   totalQuestions: number;
-  userAnswer: any;
+  userAnswer: AnswerObject | undefined;
 };
 
 // we want to tell typescript that this is a react functional compoent
@@ -28,7 +31,10 @@ const QuestionCard: React.FC<CardProps> = ({
       <div>
         {answers.map((answer) => (
           <div>
-            <button disabled={userAnswer} value={answer} onClick={callback}>
+            <button
+              disabled={userAnswer ? true : false}
+              value={answer}
+              onClick={callback}>
               {/* answer we are getting from answers array */}
               <span dangerouslySetInnerHTML={{ __html: answer }} />
             </button>

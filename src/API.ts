@@ -24,7 +24,7 @@ export const fetchQuizData = async (
   difficulty: Difficulty,
   category: string
 ) => {
-  const endPoint = `https://opentdb.com/api.php?amount=${amount}&category=${category} &difficulty=${difficulty}`;
+  const endPoint = `https://opentdb.com/api.php?amount=${amount}&category=${category}&difficulty=${difficulty}`;
   console.log(endPoint);
 
   try {

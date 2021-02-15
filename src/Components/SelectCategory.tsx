@@ -1,9 +1,16 @@
 import React from "react";
 
-const SelectCategory = () => {
+type Props = {
+  handler: (e: React.ChangeEvent<HTMLSelectElement>) => any;
+};
+
+const SelectCategory: React.FC<Props> = ({ handler }) => {
   return (
     <div>
-      <select name="trivia_category" className="form-control">
+      <select
+        onChange={handler}
+        name="trivia_category"
+        className="form-control">
         <option value="any">Any Category</option>
         <option value="9">General Knowledge</option>
         <option value="10">Entertainment: Books</option>
