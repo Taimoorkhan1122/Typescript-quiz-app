@@ -2,6 +2,7 @@ import React from "react";
 
 // types
 import { AnswerObject } from "../App";
+import { Wrapper, ButtonWrapper } from "./QuestionCard.styles";
 
 type CardProps = {
   question: string;
@@ -23,25 +24,31 @@ const QuestionCard: React.FC<CardProps> = ({
   userAnswer,
 }) => {
   return (
-    <div>
-      <p className="number">
+    <Wrapper>
+      <p className="question-count">
         {questionNum}/{totalQuestions}
       </p>
-      <p dangerouslySetInnerHTML={{ __html: question }} />
+      <div className="questionArea">
+        <p dangerouslySetInnerHTML={{ __html: question }} />
+      </div>
       <div>
         {answers.map((answer) => (
-          <div>
+          <ButtonWrapper
+            key={answer}
+            correct={userAnswer?.correctAnswer === answer}
+            userClicked={userAnswer?.answer === answer}>
             <button
+              className="answer-list"
               disabled={userAnswer ? true : false}
               value={answer}
               onClick={callback}>
               {/* answer we are getting from answers array */}
               <span dangerouslySetInnerHTML={{ __html: answer }} />
             </button>
-          </div>
+          </ButtonWrapper>
         ))}
       </div>
-    </div>
+    </Wrapper>
   );
 };
 

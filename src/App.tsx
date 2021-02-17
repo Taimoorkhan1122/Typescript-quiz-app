@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { fetchQuizData, Difficulty, QuestionState } from "./API";
-
+// styles
+import { GlobalStyles, Wrapper } from "./App.styles";
 // components
 import { SelectCategory, QuestionCard } from "./Components";
 
@@ -73,41 +74,44 @@ const App = () => {
   };
 
   return (
-    <div className="App">
-      <h1>React Quiz App</h1>
-
-      {/* if not game over and the its not the last answer than show this button */}
-      {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
+    <>
+      <GlobalStyles />
+      <Wrapper>
         <div className="container">
-          <SelectCategory handler={handler} />
-          <button className="start" onClick={startQuiz}>
-            start quiz
-          </button>
+          <h1>React Quiz App</h1>
+          {/* if not game over and the its not the last answer than show this button */}
+          {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
+            <div className="container">
+              <SelectCategory handler={handler} />
+              <button className="start" onClick={startQuiz}>
+                start quiz
+              </button>
+            </div>
+          ) : null}
+          {loading && !gameOver && <p>Loading...</p>}
+          <div className="score-area">{!gameOver && <p>Score: {score}</p>}</div>
+          {!loading && !gameOver && (
+            <QuestionCard
+              questionNum={number + 1}
+              totalQuestions={TOTAL_QUESTIONS}
+              question={questions[number].question}
+              answers={questions[number].answers}
+              userAnswer={userAnswers ? userAnswers[number] : undefined}
+              callback={checkAnswer}
+            />
+          )}
+          {/* if not game over and not loading and has given atleast 1 answer and it's the last question then show this button */}
+          {!gameOver &&
+            !loading &&
+            userAnswers.length === number + 1 &&
+            number !== TOTAL_QUESTIONS - 1 && (
+              <button className="next" onClick={nextQuestion}>
+                Next question
+              </button>
+            )}
         </div>
-      ) : null}
-      {!gameOver && <p>Score: {score}</p>}
-      {loading && !gameOver && <p>Loading...</p>}
-      {!loading && !gameOver && (
-        <QuestionCard
-          questionNum={number + 1}
-          totalQuestions={TOTAL_QUESTIONS}
-          question={questions[number].question}
-          answers={questions[number].answers}
-          userAnswer={userAnswers ? userAnswers[number] : undefined}
-          callback={checkAnswer}
-        />
-      )}
-
-      {/* if not game over and not loading and has given atleast 1 answer and it's the last question then show this button */}
-      {!gameOver &&
-        !loading &&
-        userAnswers.length === number + 1 &&
-        number !== TOTAL_QUESTIONS - 1 && (
-          <button className="next" onClick={nextQuestion}>
-            Next question
-          </button>
-        )}
-    </div>
+      </Wrapper>
+    </>
   );
 };
 
