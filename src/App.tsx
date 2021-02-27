@@ -79,6 +79,7 @@ const App = () => {
       <Wrapper>
         <div className="container">
           <h1>React Quiz App</h1>
+
           {/* if not game over and the its not the last answer than show this button */}
           {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
             <div className="container">
@@ -88,6 +89,7 @@ const App = () => {
               </button>
             </div>
           ) : null}
+
           {loading && !gameOver && <p>Loading...</p>}
           <div className="score-area">{!gameOver && <p>Score: {score}</p>}</div>
           {!loading && !gameOver && (

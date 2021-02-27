@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  background-color: #08aeea;
+  background-color: #08aeea5d;
+  /* background-color: rgba(255, 255, 255, 0.75); */
   background-image: linear-gradient(0deg, #08aeea 0%, #2af598 100%);
   display: flex;
   flex-direction: column;
@@ -25,7 +26,7 @@ export const Wrapper = styled.div`
     padding: 10px;
     font-weight: bold;
     border-radius: 10px;
-    filter: opacity(1) !important;
+    filter: opacity(1);
   }
 
   .question-count {
@@ -63,7 +64,6 @@ export const ButtonWrapper = styled.div<ButtonWrapperProp>`
     font-size: 0.75rem;
     color: #fff;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
-
-    filter: opacity(1) !important;
+    opacity: 1;
   }
 `;

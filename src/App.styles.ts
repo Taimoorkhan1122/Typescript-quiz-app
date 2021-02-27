@@ -18,14 +18,13 @@ body {
     background: url(${bgImage}) no-repeat;
     background-size: cover;
     background-position: center; 
-    filter: opacity(0.85);
+    filter: opacity(1);
 }
 
 
 h1 {
     text-transform: uppercase;
     color: #FfFF;
-    filter: opacity(1) !important;
 }
 
 `;

@@ -38,6 +38,7 @@ export const fetchQuizData = async (
       ]),
     }));
   } catch (error) {
-    console.log(error);
+    console.log("API error " + error);
+    return 0;
   }
 };
