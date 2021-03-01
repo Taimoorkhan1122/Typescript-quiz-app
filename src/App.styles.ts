@@ -49,4 +49,19 @@ export const Wrapper = styled.div`
     color: #fff;
     font-size: 1rem;
   }
+  button:not(.answer-list) {
+    cursor: pointer;
+    width: 300px;
+    outline: none;
+    border: none;
+    border-radius: 0.5rem;
+    color: #fff;
+    padding: 0.75rem;
+    margin: 5px;
+    font-size: 1rem;
+    background-image: linear-gradient(270deg, #08aeea 0%, #2af598 100%);
+  }
+  button:hover {
+    transform: scale(1.025);
+  }
 `;

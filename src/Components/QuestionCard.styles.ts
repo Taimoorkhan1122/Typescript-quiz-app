@@ -8,8 +8,8 @@ export const Wrapper = styled.div`
   flex-direction: column;
   justify-self: center;
   align-items: center;
-  width: 70vw;
-  min-height: 35vh;
+  width: 100%;
+  /* min-height: 35vh; */
   margin: 2.25rem 0;
   padding: 1.25rem;
   border-radius: 10px;
@@ -23,7 +23,7 @@ export const Wrapper = styled.div`
   .questionArea {
     background-color: #f9f9f8;
     margin: 1rem 0;
-    padding: 10px;
+    padding: 8px 1rem;
     font-weight: bold;
     border-radius: 10px;
     filter: opacity(1);

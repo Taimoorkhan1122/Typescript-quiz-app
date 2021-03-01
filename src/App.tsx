@@ -85,7 +85,7 @@ const App = () => {
             <div className="container">
               <SelectCategory handler={handler} />
               <button className="start" onClick={startQuiz}>
-                start quiz
+                START QUIZ
               </button>
             </div>
           ) : null}
