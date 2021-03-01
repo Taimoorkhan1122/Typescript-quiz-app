@@ -1,8 +1,8 @@
-name: Portfolio Site
+name: Typescript Quiz App
 
 on: [push]
 
-jobs: 
+jobs:
   build:
     runs-on: ubuntu-latest
     name: My Deployment
@@ -23,8 +23,4 @@ jobs:
       - name: Install surge
         run: npm install -g surge
       - name: Run Surge
-        run: surge ./build taimoorK.surge.sh --token ${{secrets.MY_SECRET}} 
-
-
-
-        
+        run: surge ./build tsx-quiz-app.surge.sh --token ${{secrets.MY_SECRET}}
