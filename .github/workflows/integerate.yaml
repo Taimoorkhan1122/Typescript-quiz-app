@@ -18,6 +18,8 @@ jobs:
           cmd: install # will run `yarn install` command
       - name: Install Yarn
         run: sudo apt update && sudo apt install yarn
+      - name: Permission
+        run: sudo npm install -g --unsafe-perm=true --allow-root
       - name: Build React app
         run: yarn build
       - name: Install surge
